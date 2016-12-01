@@ -25,9 +25,8 @@ class Command implements CommandContract
     /**
      * Create a new Command instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \BlackRiver\TelegramBot\Client  $client
-     * @return void
+     * @param  \Illuminate\Http\Request       $request
+     * @param  \BlackRiver\TelegramBot\Client $client
      */
     public function __construct(Request $request, Client $client)
     {
