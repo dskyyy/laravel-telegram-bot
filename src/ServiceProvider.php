@@ -2,14 +2,11 @@
 
 namespace BlackRiver\TelegramBot;
 
-use BlackRiver\TelegramBot\Bot;
-use BlackRiver\TelegramBot\Client;
-use BlackRiver\TelegramBot\Console\Webhook\SetCommand;
-use BlackRiver\TelegramBot\Console\Webhook\RemoveCommand;
 use BlackRiver\TelegramBot\Console\BotCommand\MakeCommand;
-
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use BlackRiver\TelegramBot\Console\Webhook\RemoveCommand;
+use BlackRiver\TelegramBot\Console\Webhook\SetCommand;
 use Illuminate\Foundation\Application as LaravelApplication;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 
 class ServiceProvider extends BaseServiceProvider
@@ -23,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/telegram.php' => config_path('telegram.php'),
+                __DIR__ . '/../config/telegram.php' => config_path('telegram.php'),
             ]);
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('telegram');
@@ -37,7 +34,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/telegram.php', 'telegram');
+        $this->mergeConfigFrom(__DIR__ . '/../config/telegram.php', 'telegram');
 
         $this->registerBot();
 

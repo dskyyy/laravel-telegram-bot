@@ -7,8 +7,8 @@ interface Command
     /**
      * Handle the command.
      *
-     * @param  string  $message
-     * @return void
+     * @param  string $command
+     * @param  string $message
      */
-    public function handle($message);
+    public function handle($command, $message);
 }

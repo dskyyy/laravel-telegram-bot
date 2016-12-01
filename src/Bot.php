@@ -64,7 +64,7 @@ class Bot
             list($name, $message) = $this->getEntityText($entity);
 
             if ($command = $this->getCommand($name)) {
-                return (new $command($this->request, $this->client))->handle($message);
+                return (new $command($this->request, $this->client))->handle($command, $message);
             }
         }
     }

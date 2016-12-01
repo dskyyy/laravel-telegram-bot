@@ -3,8 +3,8 @@
 namespace BlackRiver\TelegramBot;
 
 use GuzzleHttp\Client as Guzzle;
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Support\Traits\Macroable;
 
 class Client
 {
@@ -34,7 +34,8 @@ class Client
     /**
      * Create a new Client instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository $config
+     *
      * @return void
      */
     public function __construct(Repository $config)
@@ -51,16 +52,17 @@ class Client
     /**
      * Send a request to the Telegram Bot API.
      *
-     * @param  string  $method
-     * @param  array   $parameters
-     * @param  array   $options
+     * @param  string $method
+     * @param  array  $parameters
+     * @param  array  $options
+     *
      * @return array
      */
     public function send($method, array $parameters = [], array $options = [])
     {
         $method = ltrim($method, '/');
 
-        $uri = '/bot'.$this->config->get('telegram.token').'/'.$method;
+        $uri = '/bot' . $this->config->get('telegram.token') . '/' . $method;
 
         $response = $this->guzzle->request('POST', $uri,
             array_merge($options, $this->getRequestOption($parameters))
@@ -72,14 +74,15 @@ class Client
     /**
      * Save a file from Telegram.
      *
-     * @param  string  $path
-     * @param  string  $target
-     * @param  array   $options
+     * @param  string $path
+     * @param  string $target
+     * @param  array  $options
+     *
      * @return void
      */
     public function save($path, $target, array $options = [])
     {
-        $uri = '/file/bot'.$this->config->get('telegram.token').'/'.$path;
+        $uri = '/file/bot' . $this->config->get('telegram.token') . '/' . $path;
 
         $this->guzzle->request('GET', $uri,
             array_merge($options, ['sink' => $target])
@@ -89,7 +92,8 @@ class Client
     /**
      * Get the request option.
      *
-     * @param  array  $parameters
+     * @param  array $parameters
+     *
      * @return array
      */
     protected function getRequestOption(array $parameters)

@@ -3,7 +3,6 @@
 namespace BlackRiver\TelegramBot\Facades;
 
 use BlackRiver\TelegramBot\Client;
-
 use Illuminate\Support\Facades\Facade;
 
 /**
