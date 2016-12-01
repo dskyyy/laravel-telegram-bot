@@ -114,7 +114,7 @@ class Bot
         $commands = $this->config->get('telegram.commands');
 
         foreach ($commands as $id => $command) {
-            if (preg_match($commands, $name)) {
+            if (preg_match($command, $name)) {
                 return $commands[$id];
             }
         }
