@@ -2,11 +2,10 @@
 
 namespace BlackRiver\TelegramBot;
 
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use BlackRiver\TelegramBot\Client;
-use Illuminate\Contracts\Config\Repository;
 
 class Bot
 {
@@ -41,10 +40,9 @@ class Bot
     /**
      * Create a new Telegram Bot instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository  $config
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \BlackRiver\TelegramBot\Client  $client
-     * @return void
+     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param  \Illuminate\Http\Request                $request
+     * @param  \BlackRiver\TelegramBot\Client          $client
      */
     public function __construct(Repository $config, Request $request, Client $client)
     {
@@ -88,7 +86,8 @@ class Bot
     /**
      * Get the text of a given entity.
      *
-     * @param  array  $entity
+     * @param  array $entity
+     *
      * @return array
      */
     protected function getEntityText(array $entity)
@@ -104,8 +103,9 @@ class Bot
     /**
      * Get the command class for a given name.
      *
-     * @param  string  $name
-     * @return string|null
+     * @param $name string
+     *
+     * @return null|string
      */
     protected function getCommand($name)
     {
@@ -113,6 +113,12 @@ class Bot
 
         $commands = $this->config->get('telegram.commands');
 
-        return Arr::get($commands, $name, Arr::get($commands, ltrim($name, '/')));
+        foreach ($commands as $id => $command) {
+            if (preg_match($commands, $name)) {
+                return $commands[$id];
+            }
+        }
+
+        return null;
     }
 }

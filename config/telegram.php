@@ -36,7 +36,7 @@ return [
     */
 
     'commands' => [
-        '/ping' => BlackRiver\TelegramBot\Http\BotCommands\PingCommand::class,
+        '/\/ping/' => BlackRiver\TelegramBot\Http\BotCommands\PingCommand::class,
     ],
 
     /*
