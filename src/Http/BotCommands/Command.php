@@ -39,7 +39,7 @@ class Command implements CommandContract
     /**
      * {@inheritdoc}
      */
-    public function handle($message)
+    public function handle($command, $message)
     {
         //
     }
